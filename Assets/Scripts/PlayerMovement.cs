@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxFallSpeed = -25f;
 
     [Header("Jump Properties")]
-    public float jumpForce = 5f;
+    public float jumpSpeed = 5f;
 
     [Header("Climb Properties")]
     public float climbSpeed = 3f;
@@ -52,22 +52,51 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PhysicsCheck();
         GroundMovement();
+        AirMovement();
+    }
+
+    private void PhysicsCheck()
+    {
+        isOnGround = false;
     }
 
     private void GroundMovement()
     {
         float xVelocity = moveSpeed * input.horizontal;
-
-        if (xVelocity * direction < 0f) FlipCharacterDirection();
-
         rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
 
         isMoving = (rigidBody.velocity.x == 0f) ? false : true;
+        isOnGround = (rigidBody.velocity.y == 0f) ? true : false;
+
+        // sprite and animation changes
+        if (xVelocity * direction < 0f) FlipCharacterDirection();
         animator.SetBool("Running", isMoving);
 
-        if (isOnGround) coyoteTime = Time.time + coyoteDuration;
+        if (!isOnGround)
+        {
+            coyoteTime = Time.time + coyoteDuration;
+        } else
+        {
+            coyoteTime = 0f;
+        }
+    }
 
+    private void AirMovement()
+    {
+        isOnGround = true; // temporarily force isOnGround
+
+        if (isOnGround && input.jumpPressed)
+        {
+            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
+            rigidBody.velocity += jumpVelocityToAdd;
+            Debug.Log(jumpVelocityToAdd);
+            isOnGround = false;
+            isJumping = true;
+        }
+
+        
     }
 
     private void FlipCharacterDirection()

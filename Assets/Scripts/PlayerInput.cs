@@ -43,8 +43,8 @@ public class PlayerInput : MonoBehaviour
     private void ProcessInputs()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
-        jumpPressed = jumpPressed || Input.GetButtonDown("Jump");
-        jumpHeld = jumpHeld || Input.GetButton("Jump");
+        jumpPressed = Input.GetButtonDown("Jump");
+        jumpHeld = Input.GetButton("Jump");
     }
 
     private void ClearInput()

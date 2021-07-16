@@ -143,9 +143,10 @@ MonoBehaviour:
   moveSpeed: 8
   coyoteDuration: 0.05
   maxFallSpeed: -25
-  jumpForce: 5
+  jumpSpeed: 5
   climbSpeed: 3
   isOnGround: 0
+  isMoving: 0
   isJumping: 0
   isClimbing: 0
 --- !u!1 &519420028
@@ -3300,6 +3301,10 @@ PrefabInstance:
     - target: {fileID: 2742537495551591446, guid: d41fedf233e90c9469ecbbd9c65de08c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847741170207934911, guid: d41fedf233e90c9469ecbbd9c65de08c, type: 3}
+      propertyPath: m_Mass
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d41fedf233e90c9469ecbbd9c65de08c, type: 3}
