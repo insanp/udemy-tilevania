@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Properties")]
-    public float moveSpeed = 8f;
+    public float moveSpeed = 1f;
     public float coyoteDuration = .05f;
     public float maxFallSpeed = -25f;
 
@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Status Flags")]
     public bool isOnGround;
+    public bool isMoving;
     public bool isJumping;
     public bool isClimbing;
 
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     PlayerInput input;
     CapsuleCollider2D bodyCollider;
     Rigidbody2D rigidBody;
+    Animator animator;
 
     float jumpTime;
     float coyoteTime;
@@ -42,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         input = GetComponent<PlayerInput>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         originalXScale = transform.localScale.x;
     }
@@ -60,7 +63,11 @@ public class PlayerMovement : MonoBehaviour
 
         rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
 
+        isMoving = (rigidBody.velocity.x == 0f) ? false : true;
+        animator.SetBool("Running", isMoving);
+
         if (isOnGround) coyoteTime = Time.time + coyoteDuration;
+
     }
 
     private void FlipCharacterDirection()

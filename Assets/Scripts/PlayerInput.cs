@@ -28,9 +28,6 @@ public class PlayerInput : MonoBehaviour
         ClearInput();
         ProcessInputs();
         ProcessTouchInputs();
-
-        // clamp horizontal input
-        horizontal = Mathf.Clamp(horizontal, -1f, 1f);
     }
 
     private void FixedUpdate()
@@ -45,7 +42,7 @@ public class PlayerInput : MonoBehaviour
 
     private void ProcessInputs()
     {
-        horizontal += Input.GetAxis("Horizontal");
+        horizontal = Input.GetAxisRaw("Horizontal");
         jumpPressed = jumpPressed || Input.GetButtonDown("Jump");
         jumpHeld = jumpHeld || Input.GetButton("Jump");
     }

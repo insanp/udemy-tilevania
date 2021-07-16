@@ -140,6 +140,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7c03a86a1499d344984f1bd9de34f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 8
+  coyoteDuration: 0.05
+  maxFallSpeed: -25
+  jumpForce: 5
+  climbSpeed: 3
+  isOnGround: 0
+  isJumping: 0
+  isClimbing: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,7 +3259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2742537495551591445, guid: d41fedf233e90c9469ecbbd9c65de08c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2742537495551591445, guid: d41fedf233e90c9469ecbbd9c65de08c, type: 3}
       propertyPath: m_LocalPosition.y
