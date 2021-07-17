@@ -6,12 +6,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Properties")]
-    public float moveSpeed = 1f;
+    public float moveSpeed = 8f;
     public float coyoteDuration = .05f;
     public float maxFallSpeed = -25f;
 
     [Header("Jump Properties")]
-    public float jumpSpeed = 5f;
+    public float jumpSpeed = 20f;
 
     [Header("Climb Properties")]
     public float climbSpeed = 3f;
@@ -60,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
     private void PhysicsCheck()
     {
         isOnGround = false;
+
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) isOnGround = true;
     }
 
     private void GroundMovement()
@@ -68,7 +70,6 @@ public class PlayerMovement : MonoBehaviour
         rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
 
         isMoving = (rigidBody.velocity.x == 0f) ? false : true;
-        isOnGround = (rigidBody.velocity.y == 0f) ? true : false;
 
         // sprite and animation changes
         if (xVelocity * direction < 0f) FlipCharacterDirection();
@@ -85,13 +86,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void AirMovement()
     {
-        isOnGround = true; // temporarily force isOnGround
-
         if (isOnGround && input.jumpPressed)
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpSpeed);
             rigidBody.velocity += jumpVelocityToAdd;
-            Debug.Log(jumpVelocityToAdd);
             isOnGround = false;
             isJumping = true;
         }
@@ -106,4 +104,6 @@ public class PlayerMovement : MonoBehaviour
         scale.x = originalXScale * direction;
         transform.localScale = scale;
     }
+
+    
 }
