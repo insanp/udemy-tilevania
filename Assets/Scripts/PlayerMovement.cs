@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
         GroundMovement();
         ClimbMovement();
         AirMovement();
+        UpdateAnimations();
     }
 
     private void PhysicsCheck()
@@ -77,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
 
         // sprite and animation changes
         if (xVelocity * direction < 0f) FlipCharacterDirection();
-        animator.SetBool("Running", isMoving);
 
         if (!isOnGround)
         {
@@ -90,10 +90,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void ClimbMovement()
     {
-        if (!isClimbable) return;
+        if (!isClimbable)
+        {
+            isClimbing = false;
+            return;
+        }
 
         float yVelocity = climbSpeed * input.vertical;
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, yVelocity);
+
+        isClimbing = (rigidBody.velocity.y < climbSpeed) ? isClimbing : true;
 
         //rigidBody.bodyType = Rigidbody2D;
     }
@@ -109,6 +115,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
+    }
+
+    private void UpdateAnimations()
+    {
+        animator.SetBool("Running", isMoving);
+        animator.SetBool("Climbing", isClimbing);
     }
 
     private void FlipCharacterDirection()
