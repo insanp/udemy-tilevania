@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isOnGround;
     public bool isMoving;
     public bool isJumping;
+    public bool isClimbable;
     public bool isClimbing;
 
     // component references
@@ -54,14 +55,17 @@ public class PlayerMovement : MonoBehaviour
     {
         PhysicsCheck();
         GroundMovement();
+        ClimbMovement();
         AirMovement();
     }
 
     private void PhysicsCheck()
     {
         isOnGround = false;
+        isClimbable = false;
 
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) isOnGround = true;
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) isClimbable = true;
     }
 
     private void GroundMovement()
@@ -82,6 +86,16 @@ public class PlayerMovement : MonoBehaviour
         {
             coyoteTime = 0f;
         }
+    }
+
+    private void ClimbMovement()
+    {
+        if (!isClimbable) return;
+
+        float yVelocity = climbSpeed * input.vertical;
+        rigidBody.velocity = new Vector2(rigidBody.velocity.x, yVelocity);
+
+        //rigidBody.bodyType = Rigidbody2D;
     }
 
     private void AirMovement()

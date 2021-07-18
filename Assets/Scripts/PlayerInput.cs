@@ -11,6 +11,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     public float horizontal;
+    public float vertical;
     public bool jumpPressed;
     public bool jumpHeld;
 
@@ -43,6 +44,7 @@ public class PlayerInput : MonoBehaviour
     private void ProcessInputs()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
         jumpPressed = Input.GetButtonDown("Jump");
         jumpHeld = Input.GetButton("Jump");
     }
@@ -54,6 +56,7 @@ public class PlayerInput : MonoBehaviour
 
         // reset all inputs
         horizontal = 0f;
+        vertical = 0f;
         jumpPressed = false;
         jumpHeld = false;
 
