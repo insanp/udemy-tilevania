@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     // component references
     PlayerInput input;
     CapsuleCollider2D bodyCollider;
+    BoxCollider2D groundCollider;
     Rigidbody2D rigidBody;
     Animator animator;
 
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         // get component references
         input = GetComponent<PlayerInput>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
+        groundCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
@@ -65,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
         isOnGround = false;
         isClimbable = false;
 
-        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) isOnGround = true;
+        if (groundCollider.IsTouchingLayers(LayerMask.GetMask("Ground"))) isOnGround = true;
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"))) isClimbable = true;
     }
 
