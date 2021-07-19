@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2742537495476203699}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: -3491331049486498484}
   - component: {fileID: 1207995573}
   - component: {fileID: 501270378}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1813747275
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1857188551261513057, guid: 1c3cc2645d9f29844a7dd34fee6ed442, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -154,9 +154,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &-3491331049486498484
 CapsuleCollider2D:
@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontal: 0
+  vertical: 0
   jumpPressed: 0
   jumpHeld: 0
 --- !u!114 &501270378
@@ -204,9 +205,10 @@ MonoBehaviour:
   moveSpeed: 8
   coyoteDuration: 0.05
   maxFallSpeed: -25
-  jumpSpeed: 10
+  jumpSpeed: 20
   climbSpeed: 3
   isOnGround: 0
   isMoving: 0
   isJumping: 0
+  isClimbable: 0
   isClimbing: 0
