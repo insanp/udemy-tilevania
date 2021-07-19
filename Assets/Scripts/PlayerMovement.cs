@@ -93,15 +93,15 @@ public class PlayerMovement : MonoBehaviour
         if (!isClimbable)
         {
             isClimbing = false;
+            rigidBody.gravityScale = 1f;
             return;
         }
 
         float yVelocity = climbSpeed * input.vertical;
         rigidBody.velocity = new Vector2(rigidBody.velocity.x, yVelocity);
 
-        isClimbing = (rigidBody.velocity.y < climbSpeed) ? isClimbing : true;
-
-        //rigidBody.bodyType = Rigidbody2D;
+        isClimbing = (Mathf.Abs(rigidBody.velocity.y) < climbSpeed) ? isClimbing : true;
+        rigidBody.gravityScale = (isClimbing) ? 0f : 1f;
     }
 
     private void AirMovement()
