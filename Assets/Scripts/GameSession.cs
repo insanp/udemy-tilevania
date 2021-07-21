@@ -3,10 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameSession : MonoBehaviour
 {
     public int playerLives = 3;
+    public float playerScore = 0f;
+
+    // UI elements
+    [SerializeField] Text livesText;
+    [SerializeField] Text scoreText;
 
     private void Awake()
     {
@@ -28,7 +34,8 @@ public class GameSession : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        livesText.text = playerLives.ToString();
+        scoreText.text = playerScore.ToString();
     }
 
     public void ProcessPlayerDeath()
@@ -40,6 +47,11 @@ public class GameSession : MonoBehaviour
         {
             ResetGameSession();
         }
+    }
+
+    public void AddScore(float score)
+    {
+        playerScore += score;
     }
 
     private void TakeLife()

@@ -24,6 +24,7 @@ public class Coin : MonoBehaviour
         if (collision.tag == "Player")
         {
             AudioSource.PlayClipAtPoint(pickUpSFX, Camera.main.transform.position);
+            FindObjectOfType<GameSession>().AddScore(points);
             Destroy(gameObject);
         }
     }
