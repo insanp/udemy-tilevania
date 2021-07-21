@@ -145,6 +145,7 @@ public class PlayerMovement : MonoBehaviour
             isAlive = false;
             animator.SetTrigger("Die");
             rigidBody.velocity = damageKick;
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
     }
 }
