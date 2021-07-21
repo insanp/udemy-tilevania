@@ -28,14 +28,14 @@ public class GameSession : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        livesText.text = playerLives.ToString();
+        scoreText.text = playerScore.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        livesText.text = playerLives.ToString();
-        scoreText.text = playerScore.ToString();
+        
     }
 
     public void ProcessPlayerDeath()
@@ -52,6 +52,7 @@ public class GameSession : MonoBehaviour
     public void AddScore(float score)
     {
         playerScore += score;
+        scoreText.text = playerScore.ToString();
     }
 
     private void TakeLife()
