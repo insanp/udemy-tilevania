@@ -45,9 +45,10 @@ GameObject:
   - component: {fileID: -3491331049486498484}
   - component: {fileID: 1207995573}
   - component: {fileID: 501270378}
+  - component: {fileID: 475584103}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +125,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1813747275
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1857188551261513057, guid: 1c3cc2645d9f29844a7dd34fee6ed442, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -167,7 +168,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 2742537495551591446}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: abac82beb7b6fee4fa99ae8c8f5885a4, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -205,10 +206,38 @@ MonoBehaviour:
   moveSpeed: 8
   coyoteDuration: 0.05
   maxFallSpeed: -25
+  damageKick: {x: 0, y: 10}
   jumpSpeed: 20
   climbSpeed: 3
+  isAlive: 1
   isOnGround: 0
   isMoving: 0
   isJumping: 0
   isClimbable: 0
   isClimbing: 0
+--- !u!61 &475584103
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2742537495551591446}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0017528534, y: -0.4505006}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.37245464, y: 0.098998785}
+  m_EdgeRadius: 0
