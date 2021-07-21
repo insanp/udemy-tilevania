@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 8f;
     public float coyoteDuration = .05f;
     public float maxFallSpeed = -25f;
+    public Vector2 damageKick = new Vector2(0f, 10f);
 
     [Header("Jump Properties")]
     public float jumpSpeed = 20f;
@@ -139,10 +140,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Die()
     {
-        if (rigidBody.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        if (rigidBody.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazard")))
         {
             isAlive = false;
             animator.SetTrigger("Die");
+            rigidBody.velocity = damageKick;
         }
     }
 }
