@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    [SerializeField] AudioClip pickUpSFX;
     public float points = 10f;
 
     // Start is called before the first frame update
@@ -22,6 +23,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            AudioSource.PlayClipAtPoint(pickUpSFX, Camera.main.transform.position);
             Destroy(gameObject);
         }
     }

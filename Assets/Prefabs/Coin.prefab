@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f28fd820e705074bb3d62f28f750a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickUpSFX: {fileID: 8300000, guid: f912b8662c73b7846a67daedf0b1a841, type: 3}
   points: 10
 --- !u!58 &1578838823
 CircleCollider2D:
