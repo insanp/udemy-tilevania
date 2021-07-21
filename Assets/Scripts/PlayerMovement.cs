@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public float climbSpeed = 3f;
 
     [Header("Status Flags")]
+    public bool isAlive = true;
     public bool isOnGround;
     public bool isMoving;
     public bool isJumping;
@@ -55,11 +56,14 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAlive) return;
+
         PhysicsCheck();
         GroundMovement();
         ClimbMovement();
         AirMovement();
         UpdateAnimations();
+        Die();
     }
 
     private void PhysicsCheck()
@@ -133,5 +137,12 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = scale;
     }
 
-    
+    private void Die()
+    {
+        if (rigidBody.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            isAlive = false;
+            animator.SetTrigger("Die");
+        }
+    }
 }
